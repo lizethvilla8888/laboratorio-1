@@ -4,8 +4,8 @@
 
 //Grupo 3 (4-5)  1,2,4,6,8,9,12,13,15,17
 using namespace std;
-void problema1 ();//devuelta
-void problema2 ();//
+void problema1 ();
+void problema2 ();
 void problema4 ();
 void problema6 ();
 void problema8 ();
@@ -27,8 +27,8 @@ while(opcion !=0)
         cout<<"seleccione una opcion \n"<<endl;
         cout<<"1) problema 1 : Billetes y monedas."<<endl;
         cout<<"2) problema 2 : Letras mayusculas aleatorias."<<endl;
-        cout<<"3) problema 4 : Conviertir cadena de caracteres a un número entero. "<<endl;
-        cout<<"4) problema 6 : Cambio letras minúsculas por mayúsculas. "<<endl;
+        cout<<"3) problema 4 : Conviertir cadena de caracteres a un numero entero. "<<endl;
+        cout<<"4) problema 6 : Cambio letras minusculas por mayusculas. "<<endl;
         cout<<"5) problema 8 : Separar numeros y caracteres."<<endl;
         cout<<"6) problema 9 : Cadena dividida en n # y sumada."<<endl;
         cout<<"7) problema 12: Verificar si matriz es un cuadrado magico."<<endl;
@@ -84,7 +84,7 @@ switch(opcion)
 
     case 9:
          cout << "***** Interseccion entre un par de rectangulos *****\n"<<"Problema 15"<<endl;
-         //problema15 ();
+         problema15 ();
          break;
 
     case 10:
@@ -103,137 +103,31 @@ switch(opcion)
 
 void problema1 ()
 {
-int dinero,cambio=0,cincuenta=0,veinte=0,dies=0,cinco=0,dos=0,mil=0,quinientos=0,docientos=0,cien=0,moncincuenta=0;
+int dinero ;
+int cantidad [10]={50000,20000,10000,5000,2000,1000,500,200,100,50};
+int numbillmon [10]={0,0,0,0,0,0,0,0,0,0}
+                    ;
 cout << "Ingrese cantidad de dinero:"<<endl;
 cin >> dinero;
 
-//calculo billetes de 50.000
-cincuenta = dinero /50000;
+for (int i=0;i<10;i++)
+{
+numbillmon[i]=dinero/cantidad [i];
+if (numbillmon[i]>0)
+    dinero = dinero-(cantidad [i]*numbillmon[i]);
+}
+cout << "50.000: "<<numbillmon[0]<<endl;
+cout << "20.000: "<<numbillmon[1]<<endl;
+cout << "10.000: "<<numbillmon[2]<<endl;
+cout << "5.000: "<<numbillmon[3]<<endl;
+cout << "2.000: "<<numbillmon[4]<<endl;
+cout << "1.000 "<<numbillmon[5]<<endl;
+cout << "500: "<<numbillmon[6]<<endl;
+cout << "200: "<<numbillmon[7]<<endl;
+cout << "100:"<<numbillmon[8]<<endl;
+cout << "50: "<<numbillmon[9]<<endl;
+cout << "Faltante: "<<dinero<<endl;
 
-    if (cincuenta >=0)
-        {cambio =dinero-cincuenta *50000;}
-    else
-        {cambio=0;}
-
- cout << "50.000: " <<cincuenta<<endl;
-
- //calculo de billetes de 20.000
-
-    if (cambio >=20000)
-        {
-         veinte = cambio /20000 ;
-
-         if (veinte >=0)
-            cambio = cambio - veinte * 20000;
-         else
-            cambio = 0;
-         }
-  cout << "20.000: " <<veinte<<endl;
-
-  //calculo de billetes de 10.000
-
-    if (cambio >=10000)
-         {
-          dies = cambio /10000 ;
-
-          if (dies >=0)
-             cambio = cambio - dies * 10000;
-          else
-             cambio = 0;
-
-          }
-    cout << "10.000: " <<dies<<endl;
-
-   //calculo de billetes de 5.000
-
-    if (cambio >=5000)
-        {
-          cinco = cambio /5000 ;
-
-           if (cinco >=0)
-               cambio = cambio - cinco * 5000;
-           else
-              cambio = 0;
-         }
-     cout << "5.000: " <<cinco<<endl;
-
-     //calculo de billetes de  2.000
-
-    if (cambio >=2000)
-        {
-          dos = cambio /2000 ;
-
-           if (dos >=0)
-              cambio = cambio - dos * 2000;
-           else
-              cambio = 0;
-         }
-    cout << "2.000: " <<dos<<endl;
-
-    //calculo de billetes de 1.000
-
-    if (cambio >=1000)
-        {
-           mil = cambio /1000 ;
-           if (mil >=0)
-               cambio = cambio - mil* 1000;
-           else
-              cambio = 0;
-         }
-
-    cout << "1.000: " <<mil<<endl;
-
-    //calculo de monedas de 500
-
-     if (cambio >= 500)
-         {
-           quinientos = cambio /500 ;
-           if (quinientos >=0)
-               cambio = cambio - quinientos* 500;
-           else
-              cambio = 0;
-          }
-
-     cout << "500: " <<quinientos<<endl;
-
-    //calculo de monedas de 200
-
-      if (cambio >= 200)
-         {
-          docientos  = cambio / 200 ;
-          if (docientos >=0)
-             cambio = cambio - docientos* 200;
-          else
-             cambio = 0;
-          }
-
-      cout << "200: " <<dos<<endl;
-
-      //calculo de monedas de 100
-
-      if (cambio >=100)
-           {
-           cien = cambio /100 ;
-           if (cien >=0)
-              cambio = cambio - cien* 100;
-           else
-              cambio = 0;
-           }
-
-      cout << "100: " <<cien<<endl;
-
-      //calculo de monedas de 50
-
-        if (cambio >=50)
-           {
-           moncincuenta  = cambio /50 ;
-           if (moncincuenta >=0)
-              cambio = cambio - moncincuenta * 10;
-           else
-              cambio = 0;
-            }
-        cout << "50: " <<cincuenta<<endl;
-        cout << "faltante: "<<cambio<<endl;
 }
 
 void problema2 ()
@@ -275,16 +169,28 @@ for (int i = 65; i<=90;i++)//letras abecedario
 
 void problema4 ()
 {
-char cadena[11]={NULL};
-int numeros,num=0;
-cout << "Ingrese cadena de numeros sin espacios;"<<endl;
+int n;
+
+cout << "Ingrese la cantidad de elementos que desea ingresar:"<<endl;
+cin >>n;
+
+char cadena[n];
+int numeros[n-1];
+
+cout << "Ingrese cadena de numeros: "<<endl;
 scanf("%s",cadena);
 
-for (int i=0 ; cadena[i]!=NULL && cadena[i]>=48 &&cadena[i]<57;i++)
+for (int i =0;i<n-1;i++)
 {
+int num=0;
+num = cadena [i]-48;
+for (int j= 0;j<n;j++)
+num = num*10;//aqui pongo eso elevado a la 10 elevado 0 , 10 elevaod 1 y asi
+numeros[i]=num;
+}
 
-num = cadena[i]-48;
-numeros=num*10;
+for (int i=0;i<n;i++)
+{
 
 }
 
@@ -314,32 +220,74 @@ cout <<"En mayuscula: "<< copia<<endl;
 
 void problema8 ()
 {
-int n, j=0;
+int n;
+
 cout << "Ingrese la cantidad de elementos:"<<endl;
 cin >>n;
 
 char cadena[n];
-int numeros[n],contador = 0;
-int *parr = numeros;
+int numeros[n-1],contador = 0;
+
 cout << "Ingrese cadena;"<<endl;
 scanf("%s",cadena);
 
+cout << "\n Original:\n"<<cadena<<endl;
+
+//for que evalua los elementos de la cadena inegresada
 for (int i = 0; i<=n;i++)
 {
-
+  //identifico si el carecter en la posicion [i] es un numero y lo llevo
+  //a un arreglo numerico numeros[n]
   if (cadena [i]>= 48 && cadena [i]<=57)
   {
     int num=0;
     num = cadena [i]-48;
-    numeros [j]=num;
+    numeros [contador]=num;
+
+    //elimino el caracter cadena [i].
     for (int k = i+1,eliminar=i;k<=n;k++,eliminar++)
     {cadena [eliminar]=cadena [k];}
-    num++;
     contador ++;
+    i=i-1;
   }
 }
-cout << cadena <<endl;
 
+cout << "\n Texto:\n "<< cadena <<endl<<"\n Numeros: "<<endl;
+for (int i = 0;i<contador;i++)
+    cout <<numeros[i]<<" ";
+
+cout << endl;
+
+}
+
+void problema15 ()
+{
+    int rectangulo1 [4]={0,0,0,0},rectangulo2 [4]={0,0,0,0},rectanguloc[4]={0,0,0,0};
+
+cout << "Ingrese coordenadas de triangulos:"<<endl;
+cout << "Formato:\n"<<"[0]=Coordenada en X\n[1]=Coordenada en Y\n[2]=Ancho\n,[3]=Alto\n"<<endl;
+
+for (int i= 0; i<4;i++)
+{
+    cout << "Ingrese coordenadas de rectangulo 1:"<<endl;
+    cout << "coordenada ["<<i<<"] de rectangulo 1: ";
+    cin >>rectangulo1 [i];
+}
+cout << endl;
+
+for (int i= 0; i<4;i++)
+{
+    cout << "Ingrese coordenadas de rectangulo 2:"<<endl;
+    cout << "coordenada ["<<i<<"] de rectangulo 2: ";
+    cin >>rectangulo2 [i];
+}
+cout << endl;
+
+cout << rectangulo1<<endl;
+cout << rectangulo2<<endl;
+
+
+cout <<endl;
 }
 /*
 void problema6 ()
