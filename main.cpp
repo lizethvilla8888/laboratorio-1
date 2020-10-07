@@ -55,11 +55,11 @@ switch(opcion)
 
     case 3:
     cout << "***** Conviertir cadena de caracteres a un numero entero *****\n"<<"Problema 4"<<endl;
-         //problema4 ();
+         problema4 ();
          break;
 
     case 4:
-         cout << "***** Cambio letras minúsculas por mayusculas *****\n"<<"Problema 6"<<endl;
+         cout << "***** Cambio letras minusculas por mayusculas *****\n"<<"Problema 6"<<endl;
          problema6 ();
          break;
 
@@ -169,31 +169,34 @@ for (int i = 65; i<=90;i++)//letras abecedario
 
 void problema4 ()
 {
-int n;
+int n,numerofinal=0;
 
 cout << "Ingrese la cantidad de elementos que desea ingresar:"<<endl;
 cin >>n;
+int copian = n;
 
-char cadena[n];
-int numeros[n-1];
+char cadena[n+1];
+int numeros[n];
 
 cout << "Ingrese cadena de numeros: "<<endl;
 scanf("%s",cadena);
 
-for (int i =0;i<n-1;i++)
+//ciclo para crear arreglo con los numeros int
+for (int i =0;i<=n;i++)
 {
 int num=0;
 num = cadena [i]-48;
-for (int j= 0;j<n;j++)
-num = num*10;//aqui pongo eso elevado a la 10 elevado 0 , 10 elevaod 1 y asi
 numeros[i]=num;
 }
 
-for (int i=0;i<n;i++)
+//ciclo donde me multiplica cada numero por 10
+for (int i=1;copian>0;copian--, i=i*10)
 {
-
+numeros [copian-1]=numeros [copian-1]*i;
+numerofinal= numerofinal+numeros [copian-1];
 }
 
+cout << "Numero int: " << numerofinal<<endl;
 }
 
 void problema6 ()
@@ -260,6 +263,11 @@ cout << endl;
 
 }
 
+void problema9 ()
+{
+
+}
+
 void problema15 ()
 {
     int rectangulo1 [4]={0,0,0,0},rectangulo2 [4]={0,0,0,0},rectanguloc[4]={0,0,0,0};
@@ -283,12 +291,11 @@ for (int i= 0; i<4;i++)
 }
 cout << endl;
 
-cout << rectangulo1<<endl;
-cout << rectangulo2<<endl;
 
 
 cout <<endl;
 }
+
 /*
 void problema6 ()
 {
