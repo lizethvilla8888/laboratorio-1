@@ -87,7 +87,7 @@ switch(opcion)
 
     case 8:
          cout << "***** Numero de estrellas encontradas en la imagen *****\n"<<"Problema 13"<<endl;
-         //problema13 ();
+         problema13 ();
          break;
 
     case 9:
@@ -388,19 +388,65 @@ if (veri_diagonal==true)
        veri_diagonal_secundaria=false;
 }
 
-
 if (veri_horizontal==false || veri_vertical==false || veri_diagonal==false || veri_diagonal_secundaria==false)
     cout << "La matriz NO es cuadrado magico"<<endl;
 
 if (veri_horizontal==true && veri_vertical==true && veri_diagonal==true && veri_diagonal_secundaria==true)
     cout << "La matriz es cuadrado magico"<<endl;
+}
 
+void problema13 ()
+{
+int filas =0,columnas;
+cout <<"Ingrese numero de filas: "<<endl;
+cin >> filas;
 
-}//void
+cout <<"Ingrese numero de columnas: "<<endl;
+cin >> columnas;
 
+int matriz [columnas][filas];
+cout << "\n";
 
+//usuario ingresa matriz
+for (int i = 0; i< filas;i++)//i filas
+    {
+    for (int j=0;j<columnas;j++)//j columnas
+        {
+        cout << "Dijite numero [" <<i<<"]["<<j<<"]:";
+        cin >> matriz[i][j];
+        }
+    }
+cout << "\n No se por que no me pide la matriz"<<endl;
+int estrellas =0;
+/*
+int matriz2 [6][7]={{3,4,0,0,0,6,8},//7 filas, 6 columnas
+                  {13,6,0,0,0,2,3},
+                  {6,2,7,3,0,10,0},
+                  {0,4,15,4,1,6,0},
+                  {0,7,12,6,9,10,4},
+                  {0,6,10,6,4,8,0}};
+*/
 
+//i= filas, j= columnas
+for (int i = 0; i<filas;i++)
+{
+     for (int j=0;j<columnas;j++)
+     {
+         cout << " "<<matriz[i][j]<<" ";
+         if (i!=0 && j!=0)
+         {
+             int suma=0;
+             suma = (matriz[i][j]+matriz[i][j-1]+matriz[i][j+1]+matriz[i-1][j]+matriz[i+1][j])/5;
+             if (suma >6)
+                 estrellas++;
+         }
+     }
+cout <<"\n";
+}
 
+cout << "\nEstrellas: "<<estrellas<<endl;
+cout <<"modificar programa para que no tome valores de las esquina inferiores\n";
+}
 
 
 
