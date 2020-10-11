@@ -4,9 +4,9 @@
 
 //Grupo 3 (4-5)  1,2,4,6,8,9,12,13,15,17
 using namespace std;
-void problema1 ();
-void problema2 ();
-void problema4 ();
+void problema1 ();//prototipo de la funcion
+void problema2 ();//tipo nombre parametros que resive la funcion
+int problema4 (char[]);//int, int []
 void problema6 ();
 void problema8 ();
 void problema9 ();
@@ -14,6 +14,8 @@ void problema12 ();
 void problema13 ();
 void problema15 ();
 int problema17 ();
+
+void imprimir_cadena_int (int[],int);
 
 int divisores ();
 
@@ -54,9 +56,15 @@ switch(opcion)
          break;
 
     case 3:
-    cout << "***** Conviertir cadena de caracteres a un numero entero *****\n"<<"Problema 4"<<endl;
-         problema4 ();
-         break;
+        cout << "***** Conviertir cadena de caracteres a un numero entero *****\n"<<"Problema 4"<<endl;
+        char cadena[101];
+        int numero;
+
+        cout << "Ingrese cadena de numeros: "<<endl;
+        scanf("%s",cadena);
+        numero = problema4 (cadena);
+        cout << "Numero int: " << numero<<endl;
+        break;
 
     case 4:
          cout << "***** Cambio letras minusculas por mayusculas *****\n"<<"Problema 6"<<endl;
@@ -69,12 +77,12 @@ switch(opcion)
          break;
     case 6:
          cout << "***** Cadena dividida en n # y sumada *****\n"<<"Problema 9"<<endl;
-         //problema9 ();
+         problema9 ();
          break;
 
     case 7:
          cout << "***** Verificar si matriz es un cuadrado magico *****\n"<<"Problema 12"<<endl;
-         //problema12 ();
+         problema12 ();
          break;
 
     case 8:
@@ -84,7 +92,7 @@ switch(opcion)
 
     case 9:
          cout << "***** Interseccion entre un par de rectangulos *****\n"<<"Problema 15"<<endl;
-         problema15 ();
+         //problema15 ();
          break;
 
     case 10:
@@ -167,41 +175,31 @@ for (int i = 65; i<=90;i++)//letras abecedario
 
 }
 
-void problema4 ()
+int problema4 (char cadena[])
 {
-int n,numerofinal=0;
-
-cout << "Ingrese la cantidad de elementos que desea ingresar:"<<endl;
-cin >>n;
-int copian = n;
-
-char cadena[n+1];
-int numeros[n];
-
-cout << "Ingrese cadena de numeros: "<<endl;
-scanf("%s",cadena);
+int numeros[100],longitud=0,numerofinal=0;
 
 //ciclo para crear arreglo con los numeros int
-for (int i =0;i<=n;i++)
-{
-int num=0;
-num = cadena [i]-48;
-numeros[i]=num;
-}
+for (int i =0;cadena[i]!= '\0';i++)
+    {
+    int num=0;
+    num = cadena [i]-48;
+    numeros[i]=num;
+    longitud=longitud+1;
+    }
 
 //ciclo donde me multiplica cada numero por 10
-for (int i=1;copian>0;copian--, i=i*10)
-{
-numeros [copian-1]=numeros [copian-1]*i;
-numerofinal= numerofinal+numeros [copian-1];
-}
-
-cout << "Numero int: " << numerofinal<<endl;
+for (int i=1;longitud>0;longitud--, i=i*10)
+    {
+    numeros [longitud-1]=numeros [longitud-1]*i;
+    numerofinal= numerofinal+numeros [longitud-1];
+    }
+return numerofinal;
 }
 
 void problema6 ()
 {
-char cadena[101]={NULL},copia [101]={NULL};
+char cadena[101]={},copia [101]={};//NULL
 cout << "Ingrese cadena;"<<endl;
 scanf("%s",cadena);
 
@@ -249,7 +247,7 @@ for (int i = 0; i<=n;i++)
 
     //elimino el caracter cadena [i].
     for (int k = i+1,eliminar=i;k<=n;k++,eliminar++)
-    {cadena [eliminar]=cadena [k];}
+        {cadena [eliminar]=cadena [k];}
     contador ++;
     i=i-1;
   }
@@ -260,68 +258,149 @@ for (int i = 0;i<contador;i++)
     cout <<numeros[i]<<" ";
 
 cout << endl;
-
 }
 
 void problema9 ()
 {
+int numdivisor,longitud=0,suma=0;
+cout << "Ingrese numero para dividir cadena: "<<endl;
+cin>>numdivisor;
 
+char cadena[101];
+
+cout << "Ingrese cadena de numeros:"<<endl;
+scanf("%s",cadena);
+
+cout << "Original: "<<cadena<<endl;
+
+//ciclo para hallar longitud de la cadena de numeros
+for (int i =0;cadena[i]!= '\0';i++)
+    longitud++;
+
+if (longitud%numdivisor!=0)
+{
+    //se repite hasta que se agregen los 0 a la izquierda necesarios a la cadena
+    for (int i=0,ceros =0;longitud%numdivisor!=0;i++,ceros++)
+        {
+        //agrega 0 a la izquierda y corre cada elemento de la cadena 1 posición a la derecha
+        for (int j = longitud;j>0;j--)
+             {
+             cadena[j] = cadena[j-1];
+             }
+        cadena [ceros]=48;
+        longitud++;
+        }
+}
+//convertir cadena de char a int y realizar la suma de num divididos
+while (longitud>0)
+{
+char subcadena [numdivisor+1];
+int num= 0;
+subcadena [numdivisor]='\0';
+    //creo cadena de char de long = numdivisor
+    for (int copianumdivisor=numdivisor;copianumdivisor>0;copianumdivisor--)
+        {
+        subcadena[copianumdivisor-1]=cadena [longitud-1];
+        longitud--;
+        }
+//subcadena se convierte en int y vuelve como num
+num = problema4(subcadena);
+suma=num+suma;
+}
+cout << "cadena con 0: "<<cadena<<endl;
+cout << "Suma: " <<suma << endl;
 }
 
-void problema15 ()
+void problema12 ()
 {
-    int rectangulo1 [4]={0,0,0,0},rectangulo2 [4]={0,0,0,0},rectanguloc[4]={0,0,0,0};
+int filas_colum =0;
+cout <<"Ingrese numero de filas: "<<endl;
+cin >> filas_colum;
 
-cout << "Ingrese coordenadas de triangulos:"<<endl;
-cout << "Formato:\n"<<"[0]=Coordenada en X\n[1]=Coordenada en Y\n[2]=Ancho\n,[3]=Alto\n"<<endl;
+int matriz [filas_colum][filas_colum],verificacion=0;
+bool veri_horizontal = true,veri_vertical=true,veri_diagonal=true,veri_diagonal_secundaria=true;
 
-for (int i= 0; i<4;i++)
+//usuario ingresa matriz
+for (int i = 0; i< filas_colum;i++)//i filas
 {
-    cout << "Ingrese coordenadas de rectangulo 1:"<<endl;
-    cout << "coordenada ["<<i<<"] de rectangulo 1: ";
-    cin >>rectangulo1 [i];
-}
-cout << endl;
-
-for (int i= 0; i<4;i++)
-{
-    cout << "Ingrese coordenadas de rectangulo 2:"<<endl;
-    cout << "coordenada ["<<i<<"] de rectangulo 2: ";
-    cin >>rectangulo2 [i];
-}
-cout << endl;
-
-
-
-cout <<endl;
+    for (int j=0;j<filas_colum;j++)//j columnas
+        {
+         cout << "Dijite numero [" <<i<<"]["<<j<<"]:";
+         cin >> matriz[i][j];
+        }
 }
 
-/*
-void problema6 ()
+//mostrar matriz, verificacion horizontal
+for (int i = 0; i<filas_colum;i++)
 {
-char cadena;
-cout << "Ingrese cadena de caracteres:"<<endl;
-cin >> cadena;
+     int suma_horizontal=0;
+     for (int j=0;j<filas_colum;j++)
+     {
+         cout << " ["<<matriz[i][j]<<"] ";
+         suma_horizontal = suma_horizontal + matriz[i][j];
+     }
+     if (verificacion==0)
+         verificacion=suma_horizontal;
 
+     if (suma_horizontal!=verificacion)
+         veri_horizontal = false;
+
+     cout <<"\n";
 }
 
-int problema17 ()
+// verificacion=suma_vertical;
+if (veri_horizontal==true )
 {
-int num;
-cout << "Ingrese numero: " <<endl;
-cin >> num;
+    for (int j=0;j<filas_colum;j++)
+    {
+    int suma_vertical=0;
+        for (int i=0;i<filas_colum;i++)
+        {
+            suma_vertical= suma_vertical+matriz[i][j];
+        }
 
-return 0;
+    if (suma_vertical!=verificacion)
+        veri_vertical=false;
+    }
 }
 
-int divisores ( int num)
+//verificacion diagonal principal
+if (veri_vertical==true)
 {
-    int divisor= 0;
-       for (int i = 1;i<=num;i++)
+   int suma_diagonal_principal=0;
+   for (int j=0,i=0;j<filas_colum;j++,i++)
+        {
+         suma_diagonal_principal=suma_diagonal_principal+matriz[i][j];
+        }
+   if (suma_diagonal_principal!=verificacion)
+        veri_diagonal=false;
+}
+
+//verificacion diagonal secundaria
+if (veri_diagonal==true)
+{
+   int suma_diagonal_secundaria=0;
+   for (int i=0,j=filas_colum-1;i<filas_colum;i++,j--)
        {
-         if (num%i == 0)
-             divisor = divisor+1;
+       suma_diagonal_secundaria=matriz[i][j]+suma_diagonal_secundaria;
        }
-       return divisor;
+   if (suma_diagonal_secundaria!=verificacion)
+       veri_diagonal_secundaria=false;
 }
-*/
+
+
+if (veri_horizontal==false || veri_vertical==false || veri_diagonal==false || veri_diagonal_secundaria==false)
+    cout << "La matriz NO es cuadrado magico"<<endl;
+
+if (veri_horizontal==true && veri_vertical==true && veri_diagonal==true && veri_diagonal_secundaria==true)
+    cout << "La matriz es cuadrado magico"<<endl;
+
+
+}//void
+
+
+
+
+
+
+
