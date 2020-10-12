@@ -458,30 +458,31 @@ cout <<"modificar programa para que no tome valores de las esquina inferiores\n"
 
 void problema17 ()
 {
-int num,num1,num2=0,divi1=0,divi2=0,suma=0;
+int num,num1=219,num2=0,divi1=0,divi2=0,suma=0;
+
 cout<< "Ingrese numero: "<<endl;
 cin >>num;
-num1=num;
 
-if (num1 >219)
+if (num > num1)
 {
-  while (num1 >219)
-  {
-   num2=divisores(num1);//suma de div num1
-   divi1=num2;
-   divi2= divisores(num2);//0
+int copia1 = 220, copia2 = 284; // no sumar dos veces los mismos numeros
+   while (num1 <= num)
+    {
+    num2=divisores(num1);//suma de div num1
+    divi1=num2;
+    divi2= divisores(num2);//0
 
-   if (num1==divi2 && num2==divi1 && num1 != 496)
-      {
-      suma = suma + num1 + num2;
-      //cout << "numeros amigables: "<<num1<<" "<<num2<<endl<<"Suma: "<<suma<<endl;
-      }
-   num1--;
-   }
+        if (num1==divi2 && num2==divi1 && num1 != 496 && copia1 != num2 & copia2 != num1)
+            {
+            copia1 = num1; copia2 = num2;
+            suma = suma + num1 + num2;
+            }
+    num1++;
+     }
 }
 
-else
-cout << "Suma: "<<suma<<endl;
+cout << "Suma: "<<suma<<endl<<"\n";
+
 }
 
 
