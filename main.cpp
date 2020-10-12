@@ -1,11 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
-
-//Grupo 3 (4-5)  1,2,4,6,8,9,12,13,15,17
 using namespace std;
-void problema1 ();//prototipo de la funcion
-void problema2 ();//tipo nombre parametros que resive la funcion
+
+//prblemas: 1,2,4,6,8,9,12,13,15,17
+
+void problema1 ();
+void problema2 ();
 int problema4 (char[]);//int, int []
 void problema6 ();
 void problema8 ();
@@ -13,7 +14,8 @@ void problema9 ();
 void problema12 ();
 void problema13 ();
 void problema15 ();
-int problema17 ();
+void problema17 ();
+int divisores (int);
 
 void imprimir_cadena_int (int[],int);
 
@@ -97,7 +99,7 @@ switch(opcion)
 
     case 10:
          cout << "***** Suma de todos los num amigables menores al num ingresado *****\n"<<"Problema 17"<<endl;
-         //problema17 ();
+         problema17 ();
          break;
 
     default:
@@ -397,7 +399,8 @@ if (veri_horizontal==true && veri_vertical==true && veri_diagonal==true && veri_
 
 void problema13 ()
 {
-int filas =0,columnas;
+//   /*
+int filas,columnas;
 cout <<"Ingrese numero de filas: "<<endl;
 cin >> filas;
 
@@ -416,15 +419,16 @@ for (int i = 0; i< filas;i++)//i filas
         cin >> matriz[i][j];
         }
     }
-cout << "\n No se por que no me pide la matriz"<<endl;
+//   */
 int estrellas =0;
-/*
-int matriz2 [6][7]={{3,4,0,0,0,6,8},//7 filas, 6 columnas
-                  {13,6,0,0,0,2,3},
-                  {6,2,7,3,0,10,0},
-                  {0,4,15,4,1,6,0},
-                  {0,7,12,6,9,10,4},
-                  {0,6,10,6,4,8,0}};
+ /*
+int filas=6,columnas=8;
+int matriz [6][8]={{0,3,4,0,0,0,6,8},//6 filas, 7 columnas
+                  {5,13,6,0,0,0,2,3},
+                  {2,6,2,7,3,0,10,0},
+                  {0,0,4,15,4,1,6,0},
+                  {0,0,7,12,6,9,10,4},
+                  {5,0,6,10,6,4,8,0}};
 */
 
 //i= filas, j= columnas
@@ -435,10 +439,14 @@ for (int i = 0; i<filas;i++)
          cout << " "<<matriz[i][j]<<" ";
          if (i!=0 && j!=0)
          {
-             int suma=0;
-             suma = (matriz[i][j]+matriz[i][j-1]+matriz[i][j+1]+matriz[i-1][j]+matriz[i+1][j])/5;
-             if (suma >6)
+             if (i!=filas-1 && j!=columnas-1)
+             {
+             float suma=0;
+             suma = (matriz[i][j]+matriz[i][j-1]+matriz[i][j+1]+matriz[i-1][j]+matriz[i+1][j]);
+             suma = suma /5;
+             if (suma >6.0)
                  estrellas++;
+             }
          }
      }
 cout <<"\n";
@@ -448,5 +456,46 @@ cout << "\nEstrellas: "<<estrellas<<endl;
 cout <<"modificar programa para que no tome valores de las esquina inferiores\n";
 }
 
+void problema17 ()
+{
+int num,num1,num2=0,divi1=0,divi2=0,suma=0;
+cout<< "Ingrese numero: "<<endl;
+cin >>num;
+num1=num;
+
+if (num1 >219)
+{
+  while (num1 >219)
+  {
+   num2=divisores(num1);//suma de div num1
+   divi1=num2;
+   divi2= divisores(num2);//0
+
+   if (num1==divi2 && num2==divi1 && num1 != 496)
+      {
+      suma = suma + num1 + num2;
+      //cout << "numeros amigables: "<<num1<<" "<<num2<<endl<<"Suma: "<<suma<<endl;
+      }
+   num1--;
+   }
+}
+
+else
+cout << "Suma: "<<suma<<endl;
+}
 
 
+int divisores (int num)
+{
+int suma =0;
+
+for (int i=1; i<=num/2 ;i++)
+{
+    if (num%i==0){
+        suma = suma+i;
+        //cout << i <<" ";
+    }
+}
+//cout <<"Suma: "<< suma <<endl;
+return suma;
+}
