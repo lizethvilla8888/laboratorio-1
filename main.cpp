@@ -456,6 +456,21 @@ cout << "\nEstrellas: "<<estrellas<<endl;
 cout <<"modificar programa para que no tome valores de las esquina inferiores\n";
 }
 
+void problema15 ()
+{
+int rectangulo1[4]= {0,0,0,0}, rectangulo2[4] = {0,0,0,0};
+
+cout << "Ingrese rectangulo 1:"<<endl;
+for (int i = 0; i< 4;i++)
+{
+ cout << "Dijite numero [" <<i<<"]";
+
+}
+for (int j=0;j<4;j++)//j columnas
+
+
+}
+
 void problema17 ()
 {
 int num,num1=219,num2=0,divi1=0,divi2=0,suma=0;
