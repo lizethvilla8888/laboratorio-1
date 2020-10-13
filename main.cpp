@@ -458,24 +458,131 @@ cout <<"modificar programa para que no tome valores de las esquina inferiores\n"
 
 void problema15 ()
 {
-int rectangulo1[4]= {0,0,0,0}, rectangulo2[4] = {0,0,0,0};
+int r1[4]= {0,0,0,0}, r2[4] = {0,0,0,0}, c [4]= {0,0,0,0};
+//int r1[4]= {20,25,25,20}, r2[4] = {5,30,25,15},c [4]= {0,0,0,0} ;
 
 cout << "Ingrese rectangulo 1:"<<endl;
 for (int i = 0; i< 4;i++)
 {
- cout << "Dijite valores rectangulo 1: ";
- cout << "Valor: ["<<i+1;cin >> rectangulo1 [i];
-}
+  cout << "Dijite valores rectangulo 1: ";
+  cout << "Valor: ["<<i<<"]: ";cin >> r1 [i];
+} cout << "\n \n";
 
 for (int i=0;i<4;i++)
 {
-cout << "Dijite valores rectangulo 2: ";
-cout << "Valor: ["<<i+1; cin >> rectangulo2 [i];
-}
-int cor_arr_der1=0, cor_arr_der2=0;
+  cout << "Dijite valores rectangulo 2: ";
+  cout << "Valor: ["<<i<<"]: "; cin >> r2 [i];
+} cout << "\n \n";
 
-cor_arr_der1 = rectangulo1[0]+rectangulo1[2];
-cor_arr_der2 = rectangulo2[0]+rectangulo2[2];
+//rectangulo 2 arriba a la izquierda
+    /*      r2
+     *     ---- w
+     *    |  _ |__
+     *    | |  |  |
+     *    p----   |
+     *      |z    |
+     *       -----
+     *        r1
+     */
+
+if (r1[0] > r2[0] && r2 [1] > r1 [1])
+{
+  int  w,p,z;
+    w = r2 [0] + r2 [2];
+    p = r2 [1] - r2 [3];
+    z = r1 [1]- p;
+
+  c[0]=r1[0],c[1]=r1[1], c[2]= w - r1[0] ,c[3]= z;
+}
+
+//rectangulo 2 arriba a la derecha
+/*         r2
+ *        ______
+ *       |      |
+ *       |      |
+ *  _____|___x  |
+ * |     |   |  |
+ * |     y------
+ * |         |
+ *  ---------
+ *   r1
+ */
+
+if (r2 [0] > r1[0] && r2 [1] > r1 [1] )
+{
+    int x, y;
+    x= r1[0]+r1[2];
+    y = r1[1]-(r2[1]-r2[3]);
+    c[0]= r2 [0] , c[1]= r1 [1] , c[2]= r2[0]-x, c [3]=y;
+}
+
+//rectangulo 2 abajo a la izquierda
+/*         r1
+ *         ----------
+ *        |          |
+ *   ---------x      |
+ *  |     |   |      |
+ *  |     |   |      |
+ *  |     y----------
+ *  |         |
+ *   ---------
+ *   r2
+ */
+
+if (r2 [0]>r1 [0] && r1 [1]>r2 [1])
+{
+  int x, y ;
+  x = r2 [0] + r2 [3];
+  y = r1 [0] - r1 [3];
+  c[0]= r1 [0] , c[1]= r2 [1] , c[2]= x-r1 [0], c [3]=r2 [1]-y;
+}
+
+// rectangulo 2 abajo a la derecha
+/*         r1
+ *   ---------
+ *  |         |
+ *  |     x___|___
+ *  |     |   |   |
+ *  |     |   |   |
+ *   ---------y   |
+ *        |       |
+ *         ------- r2
+ */
+
+if (r1 [0] < r2 [0] && r1 [1] > r2 [1] )
+{
+int x, y ;
+x = r1 [0] + r1 [2];
+y = r1 [1] - r1 [3];
+c[0]= r2[0] , c[1]= r2 [1] , c[2]= x-r2 [0], c[3]= y-r2 [1];
+}
+
+// rectangulo 2 contenido en rectangulo 1
+/*     r1
+ *    ----------      O r1 -------- r2
+ *   |  ------  |         |        |
+ *   | | r2   | |         |        |
+ *   |  ------  |         |        |
+ *    ----------           --------
+ */
+if (r1 [0]>= r2 [0] && r1 [1]>=r2 [1] &&r1 [2] >= r2 [2] && r1 [3] >= r2 [3])
+    c[0]= r2 [0], c[1]= r2[1] , c[2]= r2[2], c[3]= r2[3];
+
+// rectangulo 1 contenido en rectangulo 2
+/*     r2
+ *    ----------      O r1 -------- r2
+ *   |  ------  |         |        |
+ *   | | r1   | |         |        |
+ *   |  ------  |         |        |
+ *    ----------           --------
+ */
+
+if (r2[0] >= r1[0] && r2[1] >= r1[1] && r2[2] >= r1[2] && r1 [3] <= r2[3] )
+   c[0]= r1 [0], c[1]= r1[1] , c[2]= r1[2], c[3]= r1[3];
+
+
+for (int i = 0; i < 4 ; i++)
+    cout << c [i]<< " ";
 
 }
 
