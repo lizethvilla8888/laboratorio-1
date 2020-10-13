@@ -94,7 +94,7 @@ switch(opcion)
 
     case 9:
          cout << "***** Interseccion entre un par de rectangulos *****\n"<<"Problema 15"<<endl;
-         //problema15 ();
+         problema15 ();
          break;
 
     case 10:
@@ -463,11 +463,19 @@ int rectangulo1[4]= {0,0,0,0}, rectangulo2[4] = {0,0,0,0};
 cout << "Ingrese rectangulo 1:"<<endl;
 for (int i = 0; i< 4;i++)
 {
- cout << "Dijite numero [" <<i<<"]";
-
+ cout << "Dijite valores rectangulo 1: ";
+ cout << "Valor: ["<<i+1;cin >> rectangulo1 [i];
 }
-for (int j=0;j<4;j++)//j columnas
 
+for (int i=0;i<4;i++)
+{
+cout << "Dijite valores rectangulo 2: ";
+cout << "Valor: ["<<i+1; cin >> rectangulo2 [i];
+}
+int cor_arr_der1=0, cor_arr_der2=0;
+
+cor_arr_der1 = rectangulo1[0]+rectangulo1[2];
+cor_arr_der2 = rectangulo2[0]+rectangulo2[2];
 
 }
 
