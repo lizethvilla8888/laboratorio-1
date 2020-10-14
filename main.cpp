@@ -207,10 +207,12 @@ scanf("%s",cadena);
 
 for (int i= 0;i<=100;i++)
 {
+    // si letra es minuscula
     if (cadena[i]>=97 && cadena[i]<=122)
     {
         copia[i]=cadena[i]-32;
     }
+    // si letra es mayuscula
     if (cadena[i]<97 || cadena[i]>122)
     {
         copia [i]=cadena[i];
@@ -309,7 +311,7 @@ subcadena [numdivisor]='\0';
 num = problema4(subcadena);
 suma=num+suma;
 }
-cout << "cadena con 0: "<<cadena<<endl;
+
 cout << "Suma: " <<suma << endl;
 }
 
@@ -399,7 +401,7 @@ if (veri_horizontal==true && veri_vertical==true && veri_diagonal==true && veri_
 
 void problema13 ()
 {
-//   /*
+   /*
 int filas,columnas;
 cout <<"Ingrese numero de filas: "<<endl;
 cin >> filas;
@@ -421,7 +423,8 @@ for (int i = 0; i< filas;i++)//i filas
     }
 //   */
 int estrellas =0;
- /*
+ // /*
+
 int filas=6,columnas=8;
 int matriz [6][8]={{0,3,4,0,0,0,6,8},//6 filas, 7 columnas
                   {5,13,6,0,0,0,2,3},
@@ -429,7 +432,7 @@ int matriz [6][8]={{0,3,4,0,0,0,6,8},//6 filas, 7 columnas
                   {0,0,4,15,4,1,6,0},
                   {0,0,7,12,6,9,10,4},
                   {5,0,6,10,6,4,8,0}};
-*/
+// */
 
 //i= filas, j= columnas
 for (int i = 0; i<filas;i++)
@@ -453,26 +456,26 @@ cout <<"\n";
 }
 
 cout << "\nEstrellas: "<<estrellas<<endl;
-cout <<"modificar programa para que no tome valores de las esquina inferiores\n";
 }
 
 void problema15 ()
 {
-int r1[4]= {0,0,0,0}, r2[4] = {0,0,0,0}, c [4]= {0,0,0,0};
-//int r1[4]= {20,25,25,20}, r2[4] = {5,30,25,15},c [4]= {0,0,0,0} ;
-
+//int r1[4]= {0,0,0,0}, r2[4] = {0,0,0,0}, c [4]= {0,0,0,0};
+int r1[4]= {2,5,5,4}, r2[4] = {1,7,3,4},c [4]= {0,0,0,0} ;
+/*
 cout << "Ingrese rectangulo 1:"<<endl;
 for (int i = 0; i< 4;i++)
 {
   cout << "Dijite valores rectangulo 1: ";
   cout << "Valor: ["<<i<<"]: ";cin >> r1 [i];
 } cout << "\n \n";
-
+*/
 for (int i=0;i<4;i++)
 {
   cout << "Dijite valores rectangulo 2: ";
   cout << "Valor: ["<<i<<"]: "; cin >> r2 [i];
 } cout << "\n \n";
+
 
 //rectangulo 2 arriba a la izquierda
     /*      r2
@@ -513,7 +516,7 @@ if (r2 [0] > r1[0] && r2 [1] > r1 [1] )
     int x, y;
     x= r1[0]+r1[2];
     y = r1[1]-(r2[1]-r2[3]);
-    c[0]= r2 [0] , c[1]= r1 [1] , c[2]= r2[0]-x, c [3]=y;
+    c[0]= r2 [0] , c[1]= r1 [1] , c[2]= x-r2[0], c [3]=y;
 }
 
 //rectangulo 2 abajo a la izquierda
@@ -534,7 +537,7 @@ if (r2 [0]>r1 [0] && r1 [1]>r2 [1])
   int x, y ;
   x = r2 [0] + r2 [3];
   y = r1 [0] - r1 [3];
-  c[0]= r1 [0] , c[1]= r2 [1] , c[2]= x-r1 [0], c [3]=r2 [1]-y;
+  c[0]= r1[0] , c[1]= r2 [1] , c[2]= x-r1 [0], c [3]=r2 [1]-y;
 }
 
 // rectangulo 2 abajo a la derecha
